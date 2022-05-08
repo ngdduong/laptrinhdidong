@@ -1,0 +1,29 @@
+
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name ="fontFamily">@string/sans_serif_medium</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">3</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowRadius">10</item>
+    </style>
+    <style name="NavigationTheme" parent="AppTheme">
+        <item name="listPreferredItemHeightSmall">900dp</item><!-- menu item height- vary as u need -->
+
+    </style>
+
+    <style name="BlackOnWhite" parent="AppTheme">
+        <item name="android:textColor">#000</item><!-- menu item height- vary as u need -->
+
+    </style>
+
+    <style name="textBorder" parent="AppTheme">
+
+
+    </style>
+</resources>

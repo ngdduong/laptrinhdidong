@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VWeather</string>
+    <string name="icon">@drawable/clouds</string>
 </resources>
