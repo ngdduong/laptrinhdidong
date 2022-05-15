@@ -282,7 +282,7 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
             return R.string.wi_day_rain
         }
         if(icon == "10n"){
-            return R.string.wi_night_rain
+            return R.string.wi_night_alt_rain
         }
 
         if(icon == "11d"){

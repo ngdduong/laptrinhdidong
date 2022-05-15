@@ -85,9 +85,10 @@
                     <TextView
                         android:id="@+id/main_weather_icon"
                         android:layout_width="80dp"
-                        android:textSize="60dp"
+                        android:textSize="70dp"
                         android:text="hehe"
                         android:textColor="#FFFF"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center"
                         android:layout_height="match_parent"
                          />
@@ -95,6 +96,7 @@
                     <TextView
                         android:id="@+id/weather"
                         android:layout_width="180dp"
+
                         android:layout_height="match_parent"
                         android:gravity="left|center"
                         android:text="Thunderstorm"
@@ -147,9 +149,11 @@
                         android:id="@+id/temp"
                         android:layout_width="220dp"
                         android:layout_height="110dp"
-                        android:gravity="top|center"
+                        android:gravity="top|center_horizontal"
+
                         android:text="hehehe"
                         android:textColor="#FFFF"
+
                         android:textSize="100dp"
                         tools:layout_editor_absoluteX="0dp" />
 
@@ -205,7 +209,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -245,7 +249,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -284,7 +288,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -323,7 +327,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -362,7 +366,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -401,7 +405,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -440,7 +444,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -479,7 +483,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -518,7 +522,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -557,7 +561,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -596,7 +600,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -635,7 +639,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -674,7 +678,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -713,7 +717,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -752,7 +756,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -791,7 +795,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -830,7 +834,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
@@ -869,7 +873,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:textColor="#FFF"
-                                android:textSize="35dp"
+                                android:textSize="30dp"
                                 android:textAlignment="center"/>
 
                             <TextView
