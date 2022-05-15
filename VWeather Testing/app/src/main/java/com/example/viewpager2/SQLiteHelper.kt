@@ -15,13 +15,15 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
         private val COL_ID = "id"
         private val COL_NAME = "name"
         private val COL_IMAGE = "image"
-
+        private val COL_LAT = "lat"
+        private val COL_LON = "lon"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
         val createTblUser = "CREATE TABLE " + TABLE_NAME +" ("+
                 COL_ID + " NVARCHAR(256),"+
                 COL_NAME + " NVARCHAR(256))"
+
 
 
 
@@ -81,6 +83,7 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
             do{
                 id = cursor.getString(cursor.getColumnIndex(COL_ID))
                 name = cursor.getString(cursor.getColumnIndex(COL_NAME))
+
                 val city = City(id = id ,name = name)
                 cityList.add(city)
             }while (cursor.moveToNext())
@@ -93,6 +96,7 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
         val contentValues = ContentValues()
 
         contentValues.put(COL_NAME,name)
+
         //contentValues.put(COL_IMAGE,city.image)
         val success = db.update(TABLE_NAME, contentValues, "id="+ city.id,null)
         db.close()

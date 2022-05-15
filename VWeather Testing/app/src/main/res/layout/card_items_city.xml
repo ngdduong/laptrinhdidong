@@ -13,11 +13,15 @@
 
     <ImageButton
         android:id="@+id/btn_delete"
-        android:layout_width="30dp"
-        android:layout_height="30dp"/>
+        android:layout_width="25dp"
+        android:layout_gravity="center"
+        android:layout_height="25dp"
+        android:background="@drawable/cross"/>
 
         <TextView
             android:id="@+id/tv_city_name"
+
+            android:layout_gravity="center"
             android:layout_width="220dp"
             android:layout_height="20dp"/>
 

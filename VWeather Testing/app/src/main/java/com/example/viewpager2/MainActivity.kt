@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         initRecyclerViewCity()
 
 
-        getCities()
+       // getCities()
 
         btnAdd.setOnClickListener() {
             addCity()
@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity() {
             cityList.clear()
             cityList = sqLiteHelper.getAllCity()
             getWeather(cityList)
-            getCities()
+            //getCities()
         }
         catch (e: InterruptedException){
 
@@ -266,7 +266,7 @@ class MainActivity : AppCompatActivity() {
         val city = City(name = "london", id= "2643743")
         val status = sqLiteHelper.insertCity(city)
         if (status > -1) {
-            getCities()
+            //getCities()
             //cityList = sqLiteHelper.getAllCity()
             //getWeather(cityList)
         } else {
@@ -425,6 +425,7 @@ class MainActivity : AppCompatActivity() {
                 var weather = jsonObj1.getJSONArray("weather").getJSONObject(0)
                 val main = jsonObj1.getJSONObject("main")
                 val sys = jsonObj1.getJSONObject("sys")
+                val coord = jsonObj1.getJSONObject("coord")
                 val updatedAt: Long = jsonObj1.getLong("dt")
                 val temp_before = main.getString("temp")
                 val timeZone = jsonObj1.getLong("timezone")
@@ -443,10 +444,12 @@ class MainActivity : AppCompatActivity() {
                     )
 
                 println(updatedAt)
-
+                val lon = coord.getString("lon")
+                val lat = coord.getString("lat")
                 val temp = df.format(temp_before.toDouble()) + "°C"
                 val cityName = jsonObj1.getString("name") + ", " + sys.getString("country")
                 val weathermain = weather.getString("main")
+                val icon = weather.getString("icon")
                 //----------------------------
 
                 val response2 =
@@ -528,6 +531,86 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+                val pop1 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(1).getDouble("pop")*100).toString()
+                val pop2 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(2).getDouble("pop")*100).toString()
+                val pop3 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(3).getDouble("pop")*100).toString()
+                val pop4 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(4).getDouble("pop")*100).toString()
+
+                val pop5 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(5).getDouble("pop")*100).toString()
+                val pop6 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(6).getDouble("pop")*100).toString()
+                val pop7 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(7).getDouble("pop")*100).toString()
+                val pop8 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(8).getDouble("pop")*100).toString()
+                val pop9 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(9).getDouble("pop")*100).toString()
+                val pop10 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(10).getDouble("pop")*100).toString()
+                val pop11 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(11).getDouble("pop")*100).toString()
+                val pop12 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(12).getDouble("pop")*100).toString()
+                val pop13 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(13).getDouble("pop")*100).toString()
+                val pop14 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(14).getDouble("pop")*100).toString()
+                val pop15 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(15).getDouble("pop")*100).toString()
+                val pop16 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(16).getDouble("pop")*100).toString()
+                val pop17 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(17).getDouble("pop")*100).toString()
+                val pop18 =
+                    df.format(jsonObj2.getJSONArray("list").getJSONObject(18).getDouble("pop")*100).toString()
+
+
+
+
+                val icon2 =
+                    jsonObj2.getJSONArray("list").getJSONObject(2).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon3 =
+                    jsonObj2.getJSONArray("list").getJSONObject(3).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon4 =
+                    jsonObj2.getJSONArray("list").getJSONObject(4).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon5 =
+                    jsonObj2.getJSONArray("list").getJSONObject(5).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon6 =
+                    jsonObj2.getJSONArray("list").getJSONObject(6).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon7 =
+                    jsonObj2.getJSONArray("list").getJSONObject(7).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon8 =
+                    jsonObj2.getJSONArray("list").getJSONObject(8).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon9 =
+                    jsonObj2.getJSONArray("list").getJSONObject(9).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon10 =
+                    jsonObj2.getJSONArray("list").getJSONObject(10).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon11 =
+                    jsonObj2.getJSONArray("list").getJSONObject(11).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon12 =
+                    jsonObj2.getJSONArray("list").getJSONObject(12).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon13 =
+                    jsonObj2.getJSONArray("list").getJSONObject(13).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon14 =
+                    jsonObj2.getJSONArray("list").getJSONObject(14).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon15 =
+                    jsonObj2.getJSONArray("list").getJSONObject(15).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon16 =
+                    jsonObj2.getJSONArray("list").getJSONObject(16).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon17 =
+                    jsonObj2.getJSONArray("list").getJSONObject(17).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val icon18 =
+                    jsonObj2.getJSONArray("list").getJSONObject(18).getJSONArray("weather").getJSONObject(0).getString("icon")
+
+
+
+
                 temp2 = df.format(hourly2.getString("temp").toDouble()) + "°C"
                 temp3 = df.format(hourly3.getString("temp").toDouble()) + "°C"
                 temp4 = df.format(hourly4.getString("temp").toDouble()) + "°C"
@@ -568,8 +651,21 @@ class MainActivity : AppCompatActivity() {
                 time18 = SimpleDateFormat("HH:mm ",Locale.ENGLISH).format(Date((time_hourly18+timeZone-50400) * 1000))
 
                 image = cityList[i].id
-                println(cityList[i].name)
-                println(image)
+
+
+
+                val response3 =
+                    URL("https://pro.openweathermap.org/data/2.5/forecast/daily?q=$city&units=metric&cnt=8&appid=$API").readText(
+                        Charsets.UTF_8
+                    )
+                val jsonObj3 = JSONObject(response3)
+                val TodayTemp =   jsonObj3.getJSONArray("list").getJSONObject(0).getJSONObject("temp")
+                val maxTempToday = df.format(TodayTemp.getString("max").toDouble())+"°C"
+                val minTempToday = df.format(TodayTemp.getString("min").toDouble())+"°C"
+                val sunrise = SimpleDateFormat("HH:mm ",Locale.ENGLISH).format(Date(((jsonObj3.getJSONArray("list").getJSONObject(0).getLong("sunrise"))+timeZone-25200) * 1000))
+                val sunset = SimpleDateFormat("HH:mm ",Locale.ENGLISH).format(Date(((jsonObj3.getJSONArray("list").getJSONObject(0).getLong("sunset"))+timeZone-25200) * 1000))
+//                val maxTempToday = "123"
+//                val minTempToday = "456"
 
 
                 weatherr = Weather(
@@ -577,6 +673,29 @@ class MainActivity : AppCompatActivity() {
                     cityName = cityName,
                     weathermain = weathermain,
                     dateTime = dateTime,
+                    maxTempToday = maxTempToday,
+                    minTempToday = minTempToday,
+                    sunrise = sunrise,
+                    sunset = sunset,
+                    icon = icon,
+                    icon2 = icon2,
+                    icon3 = icon3,
+                    icon4 = icon4,
+                    icon5 = icon5,
+                    icon6 = icon6,
+                    icon7 = icon7,
+                    icon8 = icon8,
+                    icon9 = icon9,
+                    icon10 = icon10,
+                    icon11 = icon11,
+                    icon12  = icon12,
+                    icon13  = icon13,
+                    icon14 = icon14,
+                    icon15 = icon15,
+                    icon16 = icon16,
+                    icon17 = icon17,
+                    icon18 = icon18,
+
                     image = image,
                     temp2 = temp2,
                     temp3 = temp3,
@@ -611,7 +730,25 @@ class MainActivity : AppCompatActivity() {
                     time15 = time15,
                     time16 = time16,
                     time17 = time17,
-                    time18 = time18
+                    time18 = time18,
+                    pop1 = pop1,
+                    pop2 = pop2,
+                    pop3 = pop3,
+                    pop4 = pop4,
+                    pop5 = pop5,
+                    pop6 = pop6,
+                    pop7 = pop7,
+                    pop8 = pop8,
+                    pop9 = pop9,
+                    pop10 = pop10,
+                    pop11 = pop11,
+                    pop12 = pop12,
+                    pop13 = pop13,
+                    pop14 = pop14,
+                    pop15 = pop15,
+                    pop16 = pop16,
+                    pop17 = pop17,
+                    pop18 = pop18
                 )
                 weatherList.add(weatherr)
                 sqLiteHelper.updateCity(cityList[i], cityName)
@@ -620,12 +757,13 @@ class MainActivity : AppCompatActivity() {
 
 
             handler.post {
-
+                getCities()
 
                 context.applicationContext
 
                 val adapterWeather = WeatherAdapter(weatherList, context)
                 viewPager.adapter = adapterWeather
+
                 println(weatherList.size)
 
 //                val progressDialog = ProgressDialog(this@MainActivity)
