@@ -8,8 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.github.ahmadnemati.wind.enums.TrendType
+import com.github.matteobattilana.weather.PrecipType
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.item_view_pager.view.*
+import java.text.DecimalFormat
+import java.util.*
 
 
 class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>(){
@@ -122,26 +126,26 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
             holder.itemView.rain_hourly17.setTypeface(font)
             holder.itemView.rain_hourly18.setTypeface(font)
 
-            val rain_hourly_icon = holder.itemView.context.getString(R.string.wi_humidity)
+            val rain_hourly_icon = holder.itemView.context.getString(R.string.wi_raindrop)
 
-            holder.itemView.rain_hourly1.text = weather.pop1+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly2.text = weather.pop2+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly3.text = weather.pop3+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly4.text = weather.pop4+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly5.text   = weather.pop5+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly6.text= weather.pop6+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly7.text= weather.pop7+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly8.text= weather.pop8+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly9.text= weather.pop9+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly10.text= weather.pop10+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly11.text= weather.pop11+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly12.text= weather.pop12+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly13.text= weather.pop13+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly14.text= weather.pop14+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly15.text= weather.pop15+" "+ rain_hourly_icon
-            holder.itemView.rain_hourly16.text= weather.pop16+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly17.text= weather.pop17+ " "+rain_hourly_icon
-            holder.itemView.rain_hourly18.text= weather.pop18+" "+ rain_hourly_icon
+            holder.itemView.rain_hourly1.text = weather.pop1+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly2.text = weather.pop2+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly3.text = weather.pop3+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly4.text = weather.pop4+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly5.text   = weather.pop5+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly6.text= weather.pop6+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly7.text= weather.pop7+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly8.text= weather.pop8+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly9.text= weather.pop9+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly10.text= weather.pop10+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly11.text= weather.pop11+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly12.text= weather.pop12+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly13.text= weather.pop13+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly14.text= weather.pop14+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly15.text= weather.pop15+"%"+ rain_hourly_icon
+            holder.itemView.rain_hourly16.text= weather.pop16+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly17.text= weather.pop17+ "%"+rain_hourly_icon
+            holder.itemView.rain_hourly18.text= weather.pop18+"%"+ rain_hourly_icon
 
 
 
@@ -203,6 +207,129 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
             holder.itemView.icon_hourly16.text = icon_hourly16
             holder.itemView.icon_hourly17.text = icon_hourly17
             holder.itemView.icon_hourly18.text = icon_hourly18
+
+
+
+            holder.itemView.daily_pop1.setTypeface(font)
+            holder.itemView.daily_pop2.setTypeface(font)
+            holder.itemView.daily_pop3.setTypeface(font)
+            holder.itemView.daily_pop4.setTypeface(font)
+            holder.itemView.daily_pop5.setTypeface(font)
+            holder.itemView.daily_pop6.setTypeface(font)
+            holder.itemView.daily_pop7.setTypeface(font)
+            holder.itemView.daily_pop8.setTypeface(font)
+
+            holder.itemView.daily_icon1.setTypeface(font)
+            holder.itemView.daily_icon2.setTypeface(font)
+            holder.itemView.daily_icon3.setTypeface(font)
+            holder.itemView.daily_icon4.setTypeface(font)
+            holder.itemView.daily_icon5.setTypeface(font)
+            holder.itemView.daily_icon6.setTypeface(font)
+            holder.itemView.daily_icon7.setTypeface(font)
+            holder.itemView.daily_icon8.setTypeface(font)
+
+
+            holder.itemView.daily_day1.text = weather.daily_day1
+            holder.itemView.daily_day2.text = weather.daily_day2
+            holder.itemView.daily_day3.text = weather.daily_day3
+            holder.itemView.daily_day4.text = weather.daily_day4
+            holder.itemView.daily_day5.text = weather.daily_day5
+            holder.itemView.daily_day6.text = weather.daily_day6
+            holder.itemView.daily_day7.text = weather.daily_day7
+            holder.itemView.daily_day8.text = weather.daily_day8
+
+            holder.itemView.daily_pop1.text = weather.daily_pop1+"%"+rain_hourly_icon
+            holder.itemView.daily_pop2.text = weather.daily_pop2+"%"+rain_hourly_icon
+            holder.itemView.daily_pop3.text = weather.daily_pop3+"%"+rain_hourly_icon
+            holder.itemView.daily_pop4.text = weather.daily_pop4+"%"+rain_hourly_icon
+            holder.itemView.daily_pop5.text = weather.daily_pop5+"%"+rain_hourly_icon
+            holder.itemView.daily_pop6.text = weather.daily_pop6+"%"+rain_hourly_icon
+            holder.itemView.daily_pop7.text = weather.daily_pop7+"%"+rain_hourly_icon
+            holder.itemView.daily_pop8.text = weather.daily_pop8+"%"+rain_hourly_icon
+
+            holder.itemView.daily_min_max1.text = "▼"+weather.daily_mintemp1+"  "+"▲"+weather.daily_maxtemp1
+            holder.itemView.daily_min_max2.text = "▼"+weather.daily_mintemp2+"  "+"▲"+weather.daily_maxtemp2
+            holder.itemView.daily_min_max3.text = "▼"+weather.daily_mintemp3+"  "+"▲"+weather.daily_maxtemp3
+            holder.itemView.daily_min_max4.text = "▼"+weather.daily_mintemp4+"  "+"▲"+weather.daily_maxtemp4
+            holder.itemView.daily_min_max5.text = "▼"+weather.daily_mintemp5+"  "+"▲"+weather.daily_maxtemp5
+            holder.itemView.daily_min_max6.text = "▼"+weather.daily_mintemp6+"  "+"▲"+weather.daily_maxtemp6
+            holder.itemView.daily_min_max7.text = "▼"+weather.daily_mintemp7+"  "+"▲"+weather.daily_maxtemp7
+            holder.itemView.daily_min_max8.text = "▼"+weather.daily_mintemp8+"  "+"▲"+weather.daily_maxtemp8
+
+            holder.itemView.daily_icon1.text = holder.itemView.context.getString(getIcon(weather.daily_icon1))
+            holder.itemView.daily_icon2.text = holder.itemView.context.getString(getIcon(weather.daily_icon2))
+            holder.itemView.daily_icon3.text = holder.itemView.context.getString(getIcon(weather.daily_icon3))
+            holder.itemView.daily_icon4.text = holder.itemView.context.getString(getIcon(weather.daily_icon4))
+            holder.itemView.daily_icon5.text = holder.itemView.context.getString(getIcon(weather.daily_icon5))
+            holder.itemView.daily_icon6.text = holder.itemView.context.getString(getIcon(weather.daily_icon6))
+            holder.itemView.daily_icon7.text = holder.itemView.context.getString(getIcon(weather.daily_icon7))
+            holder.itemView.daily_icon8.text = holder.itemView.context.getString(getIcon(weather.daily_icon8))
+
+            if(weather.alerts_description!=""){
+                holder.itemView.alerts.setContentText(weather.alerts_description)
+
+            }
+            holder.itemView.alerts.setTitleText("Alerts: " + weather.alerts)
+
+            holder.itemView.sunView.setTimeTextColor(context.resources.getColor((R.color.timetextcolor)))
+            holder.itemView.sunView.setSunColor(context.resources.getColor(R.color.suncolor))
+            holder.itemView.sunView.setArcSolidColor(context.resources.getColor(R.color.clear))
+
+
+
+            holder.itemView.windview.barometerColor = context.resources.getColor(R.color.clear)
+            holder.itemView.windview.lineColor = context.resources.getColor(R.color.clear)
+
+
+
+
+                holder.itemView.sunView.setStartTime(weather.sunrise)
+                holder.itemView.sunView.setEndTime(weather.sunset)
+                holder.itemView.sunView.setCurrentTime(weather.currentTime)
+
+            val df = DecimalFormat("#.##",)
+            var windspeed = df.format(weather.wind_speed.toDouble()*3.6)
+            var wind_speed = windspeed.toString().replace(",", ".")
+            //holder.itemView.windview.setPressure(20F)
+            //holder.itemView.windview.setPressureUnit("in hPa")
+            holder.itemView.windview.barometerText = ""
+            holder.itemView.windview.setWindSpeed(wind_speed.toFloat())
+            holder.itemView.windview.setWindSpeedUnit(
+                "km/h " + convertDegreeToCardinalDirection(
+                    weather.wind_deg.toInt()
+                )
+            )
+            holder.itemView.windview.setTrendType(TrendType.NONE)
+            holder.itemView.windview.start()
+
+            holder.itemView.humidity_title.setTypeface(font)
+            holder.itemView.humidity_title.text = context.resources.getString(R.string.wi_raindrop)+" Humidity"
+            holder.itemView.humidity.setTypeface(font)
+            holder.itemView.humidity.text = weather.humidity+context.resources.getString(R.string.wi_humidity)
+
+            holder.itemView.pressure_title.setTypeface(font)
+            holder.itemView.pressure_title.text = context.resources.getString(R.string.wi_barometer)+" Pressure"
+
+            holder.itemView.visibility_title.text = context.resources.getString(R.string.fa_eye_solid)+ " Visibility"
+
+            holder.itemView.feels_like_title.setTypeface(font)
+            holder.itemView.feels_like_title.text =context.resources.getString(R.string.wi_thermometer)+" Feels like"
+            holder.itemView.feels_like.text = weather.feels_like
+
+            if(weather.visibility=="10000"){
+                holder.itemView.visibility_content.text = ">"+(weather.visibility.toDouble()/1000).toString()+" km"
+            }else{
+                holder.itemView.visibility_content.text = (weather.visibility.toDouble()/1000).toString()+" km"
+            }
+
+            holder.itemView.pressure.text = weather.pressure
+            if(weather.weathermain== "Rain" || weather.weathermain=="Drizzle" || weather.weathermain=="Thunderstorm"){
+                holder.itemView.weather_view.setWeatherData(PrecipType.RAIN)
+            }
+            else if(weather.weathermain == "Snow"){
+                holder.itemView.weather_view.setWeatherData(PrecipType.SNOW)
+            }
+
 
 
 //            val icon = BitmapFactory.decodeResource(
@@ -307,4 +434,46 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
         }
         return 0
     }
+    fun convertDegreeToCardinalDirection(directionInDegrees: Int): String? {
+        var cardinalDirection: String? = null
+        cardinalDirection = if (directionInDegrees >= 348.75 && directionInDegrees <= 360 ||
+            directionInDegrees >= 0 && directionInDegrees <= 11.25
+        ) {
+            "N"
+        } else if (directionInDegrees >= 11.25 && directionInDegrees <= 33.75) {
+            "NNE"
+        } else if (directionInDegrees >= 33.75 && directionInDegrees <= 56.25) {
+            "NE"
+        } else if (directionInDegrees >= 56.25 && directionInDegrees <= 78.75) {
+            "ENE"
+        } else if (directionInDegrees >= 78.75 && directionInDegrees <= 101.25) {
+            "E"
+        } else if (directionInDegrees >= 101.25 && directionInDegrees <= 123.75) {
+            "ESE"
+        } else if (directionInDegrees >= 123.75 && directionInDegrees <= 146.25) {
+            "SE"
+        } else if (directionInDegrees >= 146.25 && directionInDegrees <= 168.75) {
+            "SSE"
+        } else if (directionInDegrees >= 168.75 && directionInDegrees <= 191.25) {
+            "S"
+        } else if (directionInDegrees >= 191.25 && directionInDegrees <= 213.75) {
+            "SSW"
+        } else if (directionInDegrees >= 213.75 && directionInDegrees <= 236.25) {
+            "SW"
+        } else if (directionInDegrees >= 236.25 && directionInDegrees <= 258.75) {
+            "WSW"
+        } else if (directionInDegrees >= 258.75 && directionInDegrees <= 281.25) {
+            "W"
+        } else if (directionInDegrees >= 281.25 && directionInDegrees <= 303.75) {
+            "WNW"
+        } else if (directionInDegrees >= 303.75 && directionInDegrees <= 326.25) {
+            "NW"
+        } else if (directionInDegrees >= 326.25 && directionInDegrees <= 348.75) {
+            "NNW"
+        } else {
+            "?"
+        }
+        return cardinalDirection
+    }
+
 }

@@ -34,7 +34,7 @@
         android:fitsSystemWindows="true"
         android:overScrollMode="never"
         android:layoutDirection="rtl"
-        android:background="#66FFFFFF"
+        android:background="#212226"
         android:theme="@style/NavigationTheme"
         android:scrollbars="none"
         app:headerLayout="@layout/add_city_view"

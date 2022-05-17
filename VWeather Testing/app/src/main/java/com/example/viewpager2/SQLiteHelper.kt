@@ -22,7 +22,9 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
     override fun onCreate(db: SQLiteDatabase?) {
         val createTblUser = "CREATE TABLE " + TABLE_NAME +" ("+
                 COL_ID + " NVARCHAR(256),"+
-                COL_NAME + " NVARCHAR(256))"
+                COL_NAME + " NVARCHAR(256),"+
+                COL_LON + " NVARCHAR(256),"+
+                COL_LAT + " NVARCHAR(256))"
 
 
 
@@ -40,6 +42,8 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
         val contentValues = ContentValues()
         contentValues.put(COL_NAME, city.name)
         contentValues.put(COL_ID,city.id)
+        contentValues.put(COL_LON, city.lon)
+        contentValues.put(COL_LAT,city.lat)
         val success = db.insert(TABLE_NAME, null, contentValues)
         db.close()
         return success
@@ -77,14 +81,16 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
         }
 
         var name: String
-
+        var lat: String
+        var lon: String
         var id : String
         if(cursor.moveToFirst()){
             do{
                 id = cursor.getString(cursor.getColumnIndex(COL_ID))
                 name = cursor.getString(cursor.getColumnIndex(COL_NAME))
-
-                val city = City(id = id ,name = name)
+                lat = cursor.getString(cursor.getColumnIndex(COL_LAT))
+                lon = cursor.getString(cursor.getColumnIndex(COL_LON))
+                val city = City(id = id ,name = name, lat = lat,lon=lon)
                 cityList.add(city)
             }while (cursor.moveToNext())
         }

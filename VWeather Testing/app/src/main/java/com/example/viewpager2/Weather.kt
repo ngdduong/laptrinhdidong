@@ -5,13 +5,21 @@ class Weather {
     var temp: String = ""
     var cityName: String = ""
     var dateTime: String = ""
+    var currentTime: String = ""
+    var humidity: String =""
+    var wind_speed: String = ""
+    var wind_deg: String = ""
     var image: String = ""
     var icon: String = ""
+    var feels_like: String =""
     var minTempToday: String = ""
     var maxTempToday: String = ""
     var sunrise: String = ""
     var sunset: String = ""
-
+    var alerts: String = ""
+    var alerts_description: String = ""
+    var visibility: String = ""
+    var pressure: String = ""
     var pop1: String = ""
     var pop2: String = ""
     var pop3: String = ""
@@ -30,6 +38,47 @@ class Weather {
     var pop16: String = ""
     var pop17: String = ""
     var pop18: String = ""
+
+    var daily_icon1: String = ""
+    var daily_icon2: String = ""
+    var daily_icon3: String = ""
+    var daily_icon4: String = ""
+    var daily_icon5: String = ""
+    var daily_icon6: String = ""
+    var daily_icon7: String = ""
+    var daily_icon8: String = ""
+    var daily_pop1: String = ""
+    var daily_pop2: String = ""
+    var daily_pop3: String = ""
+    var daily_pop4: String = ""
+    var daily_pop5: String = ""
+    var daily_pop6: String = ""
+    var daily_pop7: String = ""
+    var daily_pop8: String = ""
+    var daily_mintemp1: String = ""
+    var daily_mintemp2: String = ""
+    var daily_mintemp3: String = ""
+    var daily_mintemp4: String = ""
+    var daily_mintemp5: String = ""
+    var daily_mintemp6: String = ""
+    var daily_mintemp7: String = ""
+    var daily_mintemp8: String = ""
+    var daily_maxtemp1: String = ""
+    var daily_maxtemp2: String = ""
+    var daily_maxtemp3: String = ""
+    var daily_maxtemp4: String = ""
+    var daily_maxtemp5: String = ""
+    var daily_maxtemp6: String = ""
+    var daily_maxtemp7: String = ""
+    var daily_maxtemp8: String = ""
+    var daily_day1: String = ""
+    var daily_day2: String = ""
+    var daily_day3: String = ""
+    var daily_day4: String = ""
+    var daily_day5: String = ""
+    var daily_day6: String = ""
+    var daily_day7: String = ""
+    var daily_day8: String = ""
 
 
     var icon2: String = ""
@@ -92,11 +141,60 @@ class Weather {
         temp: String,
         cityName: String,
         dateTime: String,
+        humidity: String,
         minTempToday: String,
         maxTempToday: String,
+        currentTime: String,
+        visibility: String,
         sunrise: String,
+        feels_like:String,
         sunset: String,
+        wind_speed: String,
+        pressure: String,
+        wind_deg: String,
         icon: String,
+        alerts: String,
+        alerts_description: String,
+        daily_icon1: String ,
+        daily_icon2: String ,
+         daily_icon3: String ,
+         daily_icon4: String ,
+       daily_icon5: String ,
+         daily_icon6: String,
+         daily_icon7: String,
+        daily_icon8: String ,
+        daily_pop1: String ,
+         daily_pop2: String ,
+         daily_pop3: String ,
+         daily_pop4: String ,
+        daily_pop5: String ,
+         daily_pop6: String ,
+         daily_pop7: String ,
+        daily_pop8: String ,
+         daily_mintemp1: String,
+         daily_mintemp2: String ,
+         daily_mintemp3: String ,
+         daily_mintemp4: String ,
+         daily_mintemp5: String ,
+         daily_mintemp6: String ,
+         daily_mintemp7: String ,
+         daily_mintemp8: String ,
+        daily_maxtemp1: String,
+         daily_maxtemp2: String,
+        daily_maxtemp3: String ,
+         daily_maxtemp4: String ,
+        daily_maxtemp5: String ,
+        daily_maxtemp6: String ,
+        daily_maxtemp7: String ,
+         daily_maxtemp8: String,
+       daily_day1: String,
+      daily_day2: String ,
+         daily_day3: String,
+         daily_day4: String ,
+         daily_day5: String,
+        daily_day6: String ,
+         daily_day7: String ,
+        daily_day8: String ,
 
 
         icon2: String ,
@@ -178,6 +276,55 @@ class Weather {
         this.icon = icon
         this.sunrise = sunrise
         this.sunset = sunset
+        this.feels_like = feels_like
+        this.alerts = alerts
+        this.wind_speed = wind_speed
+        this.wind_deg = wind_deg
+        this.visibility = visibility
+        this.humidity = humidity
+        this.alerts_description = alerts_description
+        this.pressure = pressure
+        this.currentTime = currentTime
+        this.daily_icon1 = daily_icon1
+        this.daily_icon2 = daily_icon2
+        this.daily_icon3 = daily_icon3
+        this.daily_icon4 = daily_icon4
+        this.daily_icon5 = daily_icon5
+        this.daily_icon6 = daily_icon6
+        this.daily_icon7 = daily_icon7
+        this.daily_icon8 = daily_icon8
+        this.daily_pop1 = daily_pop1
+        this.daily_pop2 = daily_pop2
+        this.daily_pop3 = daily_pop3
+        this.daily_pop4 = daily_pop4
+        this.daily_pop5 = daily_pop5
+        this.daily_pop6 = daily_pop6
+        this.daily_pop7 = daily_pop7
+        this.daily_pop8 = daily_pop8
+        this.daily_mintemp1 = daily_mintemp1
+        this.daily_mintemp2 = daily_mintemp2
+        this.daily_mintemp3 = daily_mintemp3
+        this.daily_mintemp4 = daily_mintemp4
+        this.daily_mintemp5 = daily_mintemp5
+        this.daily_mintemp6 = daily_mintemp6
+        this.daily_mintemp7 = daily_mintemp7
+        this.daily_mintemp8 = daily_mintemp8
+        this.daily_maxtemp1 = daily_maxtemp1
+        this.daily_maxtemp2 = daily_maxtemp2
+        this.daily_maxtemp3 = daily_maxtemp3
+        this.daily_maxtemp4 = daily_maxtemp4
+        this.daily_maxtemp5 = daily_maxtemp5
+        this.daily_maxtemp6 = daily_maxtemp6
+        this.daily_maxtemp7 = daily_maxtemp7
+        this.daily_maxtemp8 = daily_maxtemp8
+        this.daily_day1 = daily_day1
+        this.daily_day2 = daily_day2
+        this.daily_day3 = daily_day3
+        this.daily_day4 = daily_day4
+        this.daily_day5 = daily_day5
+        this.daily_day6 = daily_day6
+        this.daily_day7 = daily_day7
+        this.daily_day8 = daily_day8
 
         this.icon2 = icon2
         this.icon3 = icon3

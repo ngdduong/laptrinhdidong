@@ -223,7 +223,9 @@ class MainActivity : AppCompatActivity() {
                 val jsonObj1 = JSONObject(response1)
                 val cityName = jsonObj1.getString("name")
                 val id = jsonObj1.getString("id")
-                val city = City(name = cityName, id=id)
+                val lon = jsonObj1.getJSONObject("coord").getString("lon")
+                val lat = jsonObj1.getJSONObject("coord").getString("lat")
+                val city = City(name = cityName, id=id, lat =lat,lon=lon)
                 sqLiteHelper.insertCity(city)
                 addedCheck = true
                 //clearEditText()
@@ -263,7 +265,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addFirstCity() {
-        val city = City(name = "london", id= "2643743")
+        val city = City(name = "london", id= "2643743", lon ="-0.12574", lat = "51.50853")
         val status = sqLiteHelper.insertCity(city)
         if (status > -1) {
             //getCities()
@@ -432,7 +434,12 @@ class MainActivity : AppCompatActivity() {
                 val df = DecimalFormat("##")
                 df.roundingMode = RoundingMode.HALF_UP
 
-
+                val feels_like = df.format(main.getString("feels_like").toDouble()) + "°C"
+                val visibility = jsonObj1.getString("visibility")
+                val humidity = main.getString("humidity")
+                val pressure = main.getString("pressure") + " hPa"
+                val wind_speed = jsonObj1.getJSONObject("wind").getString("speed")
+                val wind_deg = jsonObj1.getJSONObject("wind").getString("deg")
 
                 val dateTime =
                     "Updated at: " + SimpleDateFormat(
@@ -442,10 +449,10 @@ class MainActivity : AppCompatActivity() {
                       //  Date((timeZone+updatedAt) * 1000)
                         Date((updatedAt+timeZone-25200)*1000)
                     )
-
+                val currentTime = SimpleDateFormat("HH:mm",Locale.ENGLISH).format(Date((updatedAt+timeZone-25200)*1000))
                 println(updatedAt)
-                val lon = coord.getString("lon")
-                val lat = coord.getString("lat")
+//                val lon = coord.getString("lon")
+//                val lat = coord.getString("lat")
                 val temp = df.format(temp_before.toDouble()) + "°C"
                 val cityName = jsonObj1.getString("name") + ", " + sys.getString("country")
                 val weathermain = weather.getString("main")
@@ -611,23 +618,23 @@ class MainActivity : AppCompatActivity() {
 
 
 
-                temp2 = df.format(hourly2.getString("temp").toDouble()) + "°C"
-                temp3 = df.format(hourly3.getString("temp").toDouble()) + "°C"
-                temp4 = df.format(hourly4.getString("temp").toDouble()) + "°C"
-                temp5 = df.format(hourly5.getString("temp").toDouble()) + "°C"
-                temp6 = df.format(hourly6.getString("temp").toDouble()) + "°C"
-                temp7 = df.format(hourly7.getString("temp").toDouble()) + "°C"
-                temp8 = df.format(hourly8.getString("temp").toDouble()) + "°C"
-                temp9 = df.format(hourly9.getString("temp").toDouble()) + "°C"
-                temp10 = df.format(hourly10.getString("temp").toDouble()) + "°C"
-                temp11 = df.format(hourly11.getString("temp").toDouble()) + "°C"
-                temp12 = df.format(hourly12.getString("temp").toDouble()) + "°C"
-                temp13 = df.format(hourly13.getString("temp").toDouble()) + "°C"
-                temp14 = df.format(hourly14.getString("temp").toDouble()) + "°C"
-                temp15 = df.format(hourly15.getString("temp").toDouble()) + "°C"
-                temp16 = df.format(hourly16.getString("temp").toDouble()) + "°C"
-                temp17 = df.format(hourly17.getString("temp").toDouble()) + "°C"
-                temp18 = df.format(hourly18.getString("temp").toDouble()) + "°C"
+                temp2 = df.format(hourly2.getString("temp").toDouble()) + "°"
+                temp3 = df.format(hourly3.getString("temp").toDouble()) + "°"
+                temp4 = df.format(hourly4.getString("temp").toDouble()) + "°"
+                temp5 = df.format(hourly5.getString("temp").toDouble()) + "°"
+                temp6 = df.format(hourly6.getString("temp").toDouble()) + "°"
+                temp7 = df.format(hourly7.getString("temp").toDouble()) + "°"
+                temp8 = df.format(hourly8.getString("temp").toDouble()) + "°"
+                temp9 = df.format(hourly9.getString("temp").toDouble()) + "°"
+                temp10 = df.format(hourly10.getString("temp").toDouble()) + "°"
+                temp11 = df.format(hourly11.getString("temp").toDouble()) + "°"
+                temp12 = df.format(hourly12.getString("temp").toDouble()) + "°"
+                temp13 = df.format(hourly13.getString("temp").toDouble()) + "°"
+                temp14 = df.format(hourly14.getString("temp").toDouble()) + "°"
+                temp15 = df.format(hourly15.getString("temp").toDouble()) + "°"
+                temp16 = df.format(hourly16.getString("temp").toDouble()) + "°"
+                temp17 = df.format(hourly17.getString("temp").toDouble()) + "°"
+                temp18 = df.format(hourly18.getString("temp").toDouble()) + "°"
 
                 val format = SimpleDateFormat("MM-dd-yyyy HH:mm")
 
@@ -660,13 +667,77 @@ class MainActivity : AppCompatActivity() {
                     )
                 val jsonObj3 = JSONObject(response3)
                 val TodayTemp =   jsonObj3.getJSONArray("list").getJSONObject(0).getJSONObject("temp")
-                val maxTempToday = df.format(TodayTemp.getString("max").toDouble())+"°C"
-                val minTempToday = df.format(TodayTemp.getString("min").toDouble())+"°C"
-                val sunrise = SimpleDateFormat("HH:mm ",Locale.ENGLISH).format(Date(((jsonObj3.getJSONArray("list").getJSONObject(0).getLong("sunrise"))+timeZone-25200) * 1000))
-                val sunset = SimpleDateFormat("HH:mm ",Locale.ENGLISH).format(Date(((jsonObj3.getJSONArray("list").getJSONObject(0).getLong("sunset"))+timeZone-25200) * 1000))
+                val maxTempToday = df.format(TodayTemp.getString("max").toDouble())+"°"
+                val minTempToday = df.format(TodayTemp.getString("min").toDouble())+"°"
+                val sunrise = SimpleDateFormat("HH:mm",Locale.ENGLISH).format(Date(((jsonObj3.getJSONArray("list").getJSONObject(0).getLong("sunrise"))+timeZone-25200) * 1000))
+                val sunset = SimpleDateFormat("HH:mm",Locale.ENGLISH).format(Date(((jsonObj3.getJSONArray("list").getJSONObject(0).getLong("sunset"))+timeZone-25200) * 1000))
 //                val maxTempToday = "123"
 //                val minTempToday = "456"
 
+                val lat = cityList[i].lat
+                val lon = cityList[i].lon
+
+                val response4 =
+                    URL("https://pro.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=minutely,current,hourly&units=metric&appid=$API").readText(
+                        Charsets.UTF_8
+                    )
+                val jsonObj4 = JSONObject(response4)
+
+                val daily_icon1 = jsonObj4.getJSONArray("daily").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val daily_icon2 = jsonObj4.getJSONArray("daily").getJSONObject(1).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val daily_icon3 = jsonObj4.getJSONArray("daily").getJSONObject(2).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val daily_icon4 = jsonObj4.getJSONArray("daily").getJSONObject(3).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val daily_icon5 = jsonObj4.getJSONArray("daily").getJSONObject(4).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val daily_icon6 = jsonObj4.getJSONArray("daily").getJSONObject(5).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val daily_icon7 = jsonObj4.getJSONArray("daily").getJSONObject(6).getJSONArray("weather").getJSONObject(0).getString("icon")
+                val daily_icon8 = jsonObj4.getJSONArray("daily").getJSONObject(7).getJSONArray("weather").getJSONObject(0).getString("icon")
+
+                val daily_day1 = "Today"
+                val daily_day2 = SimpleDateFormat("EEEE",Locale.ENGLISH).format(Date((jsonObj4.getJSONArray("daily").getJSONObject(1).getLong("dt")+timeZone-25000)*1000))
+                val daily_day3 = SimpleDateFormat("EEEE",Locale.ENGLISH).format(Date((jsonObj4.getJSONArray("daily").getJSONObject(2).getLong("dt")+timeZone-25000)*1000))
+                val daily_day4 = SimpleDateFormat("EEEE",Locale.ENGLISH).format(Date((jsonObj4.getJSONArray("daily").getJSONObject(3).getLong("dt")+timeZone-25000)*1000))
+                val daily_day5 = SimpleDateFormat("EEEE",Locale.ENGLISH).format(Date((jsonObj4.getJSONArray("daily").getJSONObject(4).getLong("dt")+timeZone-25000)*1000))
+                val daily_day6 = SimpleDateFormat("EEEE",Locale.ENGLISH).format(Date((jsonObj4.getJSONArray("daily").getJSONObject(5).getLong("dt")+timeZone-25000)*1000))
+                val daily_day7 = SimpleDateFormat("EEEE",Locale.ENGLISH).format(Date((jsonObj4.getJSONArray("daily").getJSONObject(6).getLong("dt")+timeZone-25000)*1000))
+                val daily_day8 = SimpleDateFormat("EEEE",Locale.ENGLISH).format(Date((jsonObj4.getJSONArray("daily").getJSONObject(7).getLong("dt")+timeZone-25000)*1000))
+
+                val daily_pop1 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(0).getDouble("pop")*100).toString()
+                val daily_pop2 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(1).getDouble("pop")*100).toString()
+                val daily_pop3 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(2).getDouble("pop")*100).toString()
+                val daily_pop4 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(3).getDouble("pop")*100).toString()
+                val daily_pop5 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(4).getDouble("pop")*100).toString()
+                val daily_pop6 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(5).getDouble("pop")*100).toString()
+                val daily_pop7 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(6).getDouble("pop")*100).toString()
+                val daily_pop8 = df.format(jsonObj4.getJSONArray("daily").getJSONObject(7).getDouble("pop")*100).toString()
+
+                val daily_mintemp1 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(0).getJSONObject("temp").getString("min")).toDouble())+"°"
+                val daily_mintemp2 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(1).getJSONObject("temp").getString("min")).toDouble())+"°"
+                val daily_mintemp3 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(2).getJSONObject("temp").getString("min")).toDouble())+"°"
+                val daily_mintemp4 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(3).getJSONObject("temp").getString("min")).toDouble())+"°"
+                val daily_mintemp5 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(4).getJSONObject("temp").getString("min")).toDouble())+"°"
+                val daily_mintemp6 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(5).getJSONObject("temp").getString("min")).toDouble())+"°"
+                val daily_mintemp7 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(6).getJSONObject("temp").getString("min")).toDouble())+"°"
+                val daily_mintemp8 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(7).getJSONObject("temp").getString("min")).toDouble())+"°"
+
+                val daily_maxtemp1 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(0).getJSONObject("temp").getString("max")).toDouble())+"°"
+                val daily_maxtemp2 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(1).getJSONObject("temp").getString("max")).toDouble())+"°"
+                val daily_maxtemp3 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(2).getJSONObject("temp").getString("max")).toDouble())+"°"
+                val daily_maxtemp4 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(3).getJSONObject("temp").getString("max")).toDouble())+"°"
+                val daily_maxtemp5 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(4).getJSONObject("temp").getString("max")).toDouble())+"°"
+                val daily_maxtemp6 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(5).getJSONObject("temp").getString("max")).toDouble())+"°"
+                val daily_maxtemp7 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(6).getJSONObject("temp").getString("max")).toDouble())+"°"
+                val daily_maxtemp8 = df.format((jsonObj4.getJSONArray("daily").getJSONObject(7).getJSONObject("temp").getString("max")).toDouble())+"°"
+
+                var alerts: String
+                var alerts_description: String
+                try {
+                    alerts = jsonObj4.getJSONArray("alerts").getJSONObject(0).getString("event")
+                    alerts_description = jsonObj4.getJSONArray("alerts").getJSONObject(0).getString("description")
+                }
+                catch (e: java.lang.Exception){
+                    alerts = "Nothing"
+                    alerts_description=""
+                }
 
                 weatherr = Weather(
                     temp = temp,
@@ -675,9 +746,58 @@ class MainActivity : AppCompatActivity() {
                     dateTime = dateTime,
                     maxTempToday = maxTempToday,
                     minTempToday = minTempToday,
+                    visibility = visibility,
                     sunrise = sunrise,
                     sunset = sunset,
                     icon = icon,
+                    feels_like = feels_like,
+                    alerts = alerts,
+                    pressure = pressure,
+                    wind_speed = wind_speed,
+                    wind_deg = wind_deg,
+                    humidity = humidity,
+                    alerts_description = alerts_description,
+                    currentTime = currentTime,
+                    daily_icon1 = daily_icon1,
+                    daily_icon2 = daily_icon2,
+                    daily_icon3 = daily_icon3,
+                    daily_icon4 = daily_icon4,
+                    daily_icon5 = daily_icon5,
+                    daily_icon6 = daily_icon6,
+                    daily_icon7 = daily_icon7,
+                    daily_icon8 = daily_icon8,
+                    daily_day1 = daily_day1,
+                    daily_day2 = daily_day2,
+                    daily_day3 = daily_day3,
+                    daily_day4 = daily_day4,
+                    daily_day5 = daily_day5,
+                    daily_day6 = daily_day6,
+                    daily_day7 = daily_day7,
+                    daily_day8 = daily_day8,
+                    daily_pop1 = daily_pop1,
+                    daily_pop2 = daily_pop2,
+                    daily_pop3 = daily_pop3,
+                    daily_pop4 = daily_pop4,
+                    daily_pop5 = daily_pop5,
+                    daily_pop6 = daily_pop6,
+                    daily_pop7 = daily_pop7,
+                    daily_pop8 = daily_pop8,
+                    daily_maxtemp1 = daily_maxtemp1,
+                    daily_maxtemp2 = daily_maxtemp2,
+                    daily_maxtemp3 = daily_maxtemp3,
+                    daily_maxtemp4 = daily_maxtemp4,
+                    daily_maxtemp5 = daily_maxtemp5,
+                    daily_maxtemp6 = daily_maxtemp6,
+                    daily_maxtemp7 = daily_maxtemp7,
+                    daily_maxtemp8 = daily_maxtemp8,
+                    daily_mintemp1 = daily_mintemp1,
+                    daily_mintemp2 = daily_mintemp2,
+                    daily_mintemp3 = daily_mintemp3,
+                    daily_mintemp4 = daily_mintemp4,
+                    daily_mintemp5 = daily_mintemp5,
+                    daily_mintemp6 = daily_mintemp6,
+                    daily_mintemp7 = daily_mintemp7,
+                    daily_mintemp8 = daily_mintemp8,
                     icon2 = icon2,
                     icon3 = icon3,
                     icon4 = icon4,
