@@ -252,6 +252,7 @@ class MainActivity : AppCompatActivity() {
             //weatherList.clear()
             //cityList= sqLiteHelper.getAllCity()
             //println(weatherList.size)
+            clearEditText()
             cityList.clear()
             cityList = sqLiteHelper.getAllCity()
             getWeather(cityList)
