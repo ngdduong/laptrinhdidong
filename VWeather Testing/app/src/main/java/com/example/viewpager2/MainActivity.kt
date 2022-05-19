@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sqLiteHelper: SQLiteHelper
     private lateinit var recyclerViewCity: RecyclerView
     private lateinit var recyclerViewWeather: RecyclerView
-    lateinit var Api: API
+
 
     private var adapterCity: CityAdapter? = null
     private var city: City? = null
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         sqLiteHelper = SQLiteHelper(this)
         context = this
         weatherList = ArrayList<Weather>()
-        Api = API()
+
 
         //val images = listOf(R.drawable.i1580541, R.drawable.somewhere, R.drawable.i2988507)
         // var cityList: ArrayList<City> = sqLiteHelper.getAllCity()
@@ -123,23 +123,20 @@ class MainActivity : AppCompatActivity() {
         cityList = sqLiteHelper.getAllCity()
         println("City size" + cityList.size)
 
-
-
         weatherList.clear()
         if(cityList.size<1){
             addFirstCity()
-
             val intent = intent
             finish()
             startActivity(intent)
         }else{
-            println("City size" + cityList.size)
+            //println("City size" + cityList.size)
             getWeather(cityList)
         }
 
         //weatherList.add(weatherr)
 
-        println(weatherList.size)
+        //println(weatherList.size)
 
 
 
@@ -220,6 +217,7 @@ class MainActivity : AppCompatActivity() {
                     URL("https://pro.openweathermap.org/data/2.5/weather?q=$name&units=metric&appid=$API").readText(
                         Charsets.UTF_8
                     )
+
                 val jsonObj1 = JSONObject(response1)
                 val cityName = jsonObj1.getString("name")
                 val id = jsonObj1.getString("id")
@@ -269,7 +267,7 @@ class MainActivity : AppCompatActivity() {
         val city = City(name = "london", id= "2643743", lon ="-0.12574", lat = "51.50853")
         val status = sqLiteHelper.insertCity(city)
         if (status > -1) {
-            //getCities()
+            getCities()
             //cityList = sqLiteHelper.getAllCity()
             //getWeather(cityList)
         } else {
@@ -292,7 +290,6 @@ class MainActivity : AppCompatActivity() {
         builder.setCancelable(true)
         builder.setPositiveButton("Yes") { dialog, _ ->
             sqLiteHelper.deleteCity(name)
-            getCities()
             weatherList.clear()
             var cityList: ArrayList<City> = sqLiteHelper.getAllCity()
             getWeather(cityList)
@@ -341,63 +338,6 @@ class MainActivity : AppCompatActivity() {
     //----------------------------------------------------
 
 
-    inner class currentweatherTask() : AsyncTask<String, URL, String>() {
-
-
-        override fun onPreExecute() {
-            super.onPreExecute()
-            /* Showing the ProgressBar, Making the main design GONE */
-
-
-        }
-
-        override fun doInBackground(vararg params: String?): String? {
-
-            var response1: String?
-            try {
-                response1 =
-                    URL("https://pro.openweathermap.org/data/2.5/weather?q=$city&units=metric&lang=vi&appid=$API").readText(
-                        Charsets.UTF_8
-                    )
-            } catch (e: Exception) {
-                response1 = null
-            }
-            return response1
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            try {
-                val jsonObj1 = JSONObject(result)
-                var weather = jsonObj1.getJSONArray("weather").getJSONObject(0)
-                val main = jsonObj1.getJSONObject("main")
-                val sys = jsonObj1.getJSONObject("sys")
-                val updatedAt: Long = jsonObj1.getLong("dt")
-                val temp_before = main.getString("temp")
-                val timeZone = jsonObj1.getLong("timezone")
-                val df = DecimalFormat("##")
-                df.roundingMode = RoundingMode.HALF_UP
-                dateTime =
-                    "Updated at: " + SimpleDateFormat(
-                        "dd/MM/yyyy HH:mm ",
-                        Locale.ENGLISH
-                    ).format(
-                        Date((timeZone+updatedAt) * 1000)
-                    )
-                temp = df.format(temp_before.toDouble()) + "°C"
-                cityName = jsonObj1.getString("name") + ", " + sys.getString("country")
-                weathermain = weather.getString("main")
-
-
-            } catch (e: Exception) {
-
-                //findViewById<TextView>(R.id.temp).visibility = View.VISIBLE
-            }
-
-        }
-
-
-    }
 
 
     fun getWeather(cityList: ArrayList<City>) {
@@ -873,18 +813,14 @@ class MainActivity : AppCompatActivity() {
                 )
                 weatherList.add(weatherr)
                 sqLiteHelper.updateCity(cityList[i], cityName)
-
             }
 
 
             handler.post {
                 getCities()
-
                 context.applicationContext
-
                 val adapterWeather = WeatherAdapter(weatherList, context)
                 viewPager.adapter = adapterWeather
-
                 println(weatherList.size)
 
 //                val progressDialog = ProgressDialog(this@MainActivity)
@@ -898,6 +834,8 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    // khong dung toi
     fun removeAccent(s: String): String {
         var temp: String = Normalizer.normalize(s, Normalizer.Form.NFD)
         val pattern: Pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+")

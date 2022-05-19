@@ -56,9 +56,6 @@ class CityAdapter  : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
 
         private var name = view.findViewById<TextView>(R.id.tv_city_name)
 
-
-
-
         var btnDelete = view.findViewById<ImageButton>(R.id.btn_delete)
 
         fun bindView(city: City) {

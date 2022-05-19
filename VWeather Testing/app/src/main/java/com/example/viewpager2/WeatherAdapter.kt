@@ -19,22 +19,22 @@ import java.util.*
 class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>(){
     var context: Context = context
     inner class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private var cityName = itemView.findViewById<TextView>(R.id.city_name_text)
-        private var weatherViewPager = itemView.findViewById<ConstraintLayout>(R.id.weather_view_pager)
+//        private var cityName = itemView.findViewById<TextView>(R.id.city_name_text)
+//        private var weatherViewPager = itemView.findViewById<ConstraintLayout>(R.id.weather_view_pager)
 
-        fun bindView(weather: Weather) {
-
-            cityName.text = weather.cityName
-
-
-
-
-        }
+//        fun bindView(weather: Weather) {
+//
+//            cityName.text = weather.cityName
+//
+//
+//
+//
+//        }
     }
-    fun addItems(items: ArrayList<Weather>) {
-        this.weatherList = items
-        notifyDataSetChanged()
-    }
+//    fun addItems(items: ArrayList<Weather>) {
+//        this.weatherList = items
+//        notifyDataSetChanged()
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -54,10 +54,14 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
 
         //holder.itemView.main_image.setBackgroundResource(curImage)
        else{
+
+
             holder.itemView.city_name_text.text = weather.cityName
             holder.itemView.temp.text = weather.temp
             holder.itemView.date_time.text = weather.dateTime
             holder.itemView.weather.text = weather.weathermain
+            //---------------------------------
+
             holder.itemView.temp_hourly1.text = weather.temp
             holder.itemView.time_hourly2.text = weather.time2
             holder.itemView.time_hourly3.text = weather.time3
@@ -265,27 +269,28 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
             holder.itemView.daily_icon7.text = holder.itemView.context.getString(getIcon(weather.daily_icon7))
             holder.itemView.daily_icon8.text = holder.itemView.context.getString(getIcon(weather.daily_icon8))
 
+
+            //canh bao
             if(weather.alerts_description!=""){
                 holder.itemView.alerts.setContentText(weather.alerts_description)
 
             }
             holder.itemView.alerts.setTitleText("Alerts: " + weather.alerts)
 
+
+
+            // mat troi va canh quat
+
             holder.itemView.sunView.setTimeTextColor(context.resources.getColor((R.color.timetextcolor)))
             holder.itemView.sunView.setSunColor(context.resources.getColor(R.color.suncolor))
             holder.itemView.sunView.setArcSolidColor(context.resources.getColor(R.color.clear))
 
-
-
             holder.itemView.windview.barometerColor = context.resources.getColor(R.color.clear)
             holder.itemView.windview.lineColor = context.resources.getColor(R.color.clear)
 
-
-
-
-                holder.itemView.sunView.setStartTime(weather.sunrise)
-                holder.itemView.sunView.setEndTime(weather.sunset)
-                holder.itemView.sunView.setCurrentTime(weather.currentTime)
+            holder.itemView.sunView.setStartTime(weather.sunrise)
+            holder.itemView.sunView.setEndTime(weather.sunset)
+            holder.itemView.sunView.setCurrentTime(weather.currentTime)
 
             val df = DecimalFormat("#.##",)
             var windspeed = df.format(weather.wind_speed.toDouble()*3.6)
@@ -316,19 +321,38 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
             holder.itemView.feels_like_title.text =context.resources.getString(R.string.wi_thermometer)+" Feels like"
             holder.itemView.feels_like.text = weather.feels_like
 
+
+
+
+
+
+
+
+
+
+
+
+            //tam nhin
+
             if(weather.visibility=="10000"){
                 holder.itemView.visibility_content.text = ">"+(weather.visibility.toDouble()/1000).toString()+" km"
             }else{
                 holder.itemView.visibility_content.text = (weather.visibility.toDouble()/1000).toString()+" km"
             }
 
+
+            // ap suat
             holder.itemView.pressure.text = weather.pressure
+
+
+            // hieu ung mua tuyet bi loi
             if(weather.weathermain== "Rain" || weather.weathermain=="Drizzle" || weather.weathermain=="Thunderstorm"){
                 holder.itemView.weather_view.setWeatherData(PrecipType.RAIN)
             }
             else if(weather.weathermain == "Snow"){
                 holder.itemView.weather_view.setWeatherData(PrecipType.SNOW)
             }
+
 
 
 
@@ -365,11 +389,11 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
 
     }
 
-
-
     override fun getItemCount(): Int {
         return weatherList.size
     }
+
+
 
     fun getIcon(icon: String): Int{
         if(icon == "01d"){
@@ -434,6 +458,8 @@ class WeatherAdapter(var weatherList: ArrayList<Weather>, context: Context) : Re
         }
         return 0
     }
+
+    // doi huong do sang huong chu
     fun convertDegreeToCardinalDirection(directionInDegrees: Int): String? {
         var cardinalDirection: String? = null
         cardinalDirection = if (directionInDegrees >= 348.75 && directionInDegrees <= 360 ||

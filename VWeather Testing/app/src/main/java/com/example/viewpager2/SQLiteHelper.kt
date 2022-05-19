@@ -14,7 +14,7 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
         private val TABLE_NAME = "Cities"
         private val COL_ID = "id"
         private val COL_NAME = "name"
-        private val COL_IMAGE = "image"
+//        private val COL_IMAGE = "image"
         private val COL_LAT = "lat"
         private val COL_LON = "lon"
     }
@@ -49,18 +49,18 @@ class SQLiteHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME,n
         return success
 
     }
-    fun insertCityImage(city: City,image :String): Int{
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-
-        contentValues.put(COL_IMAGE,image)
-
-
-        val success = db.update(TABLE_NAME, contentValues, "name="+ city.name,null)
-        db.close()
-        return success
-
-    }
+//    fun insertCityImage(city: City,image :String): Int{
+//        val db = this.writableDatabase
+//        val contentValues = ContentValues()
+//
+//        contentValues.put(COL_IMAGE,image)
+//
+//
+//        val success = db.update(TABLE_NAME, contentValues, "name="+ city.name,null)
+//        db.close()
+//        return success
+//
+//    }
 
 
 
